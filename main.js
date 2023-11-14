@@ -70,7 +70,7 @@ for (let i = 0; i < posts.length; i++) {
 
 
     //creating the post in html (DOM )
-    const postCard = container.innerHTML += ` 
+   container.innerHTML += ` 
     <div class="post">
     <div class="post__header">
         <div class="post-meta">                    
@@ -96,7 +96,7 @@ for (let i = 0; i < posts.length; i++) {
             </a>
             </div>
             <div class="likes__counter">
-            Piace a <b id="like-counter-1" class="js-likes-counter">${postLikes}</b> persone
+            Piace a <b id="like-counter-${postId}" class="js-likes-counter">${postLikes}</b> persone
             </div>
             </div> 
          </div>            
@@ -108,11 +108,31 @@ for (let i = 0; i < posts.length; i++) {
 // Add event listener to each like button separately
 const likeButtons = document.querySelectorAll(".js-like-button");
 
-likeButtons.forEach(function (likeBtn) {
-    likeBtn.addEventListener("click", function () {
-        likeBtn.classList.toggle("like-button--liked");
+likeButtons.forEach(function (likeBtn, i) {
+    
+    const totalLikes = document.querySelector(`#like-counter-${posts[i].id}`); //Select the likes counter for the current post based on its unique ID
+
+        // Add click event listener to each like button
+        likeBtn.addEventListener("click", function () {
+            likeBtn.classList.toggle("like-button--liked");
+
+            // Update the likes count for the current post based on the button class contains
+            if(likeBtn.classList.contains("like-button--liked")){
+                posts[i].likes++;
+    
+            }
+            else{
+                posts[i].likes--;
+            }
+
+            // Update the likes counter on the page with the new count
+            totalLikes.innerHTML = posts[i].likes;
+
+        });
+
     });
-});
+    
+  
 
 
 
