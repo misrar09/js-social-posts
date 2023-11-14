@@ -38,7 +38,7 @@ const posts = [
         "media": "https://unsplash.it/600/400?image=24",
         "author": {
             "name": "Luca Formicola",
-            "image": "https://unsplash.it/300/300?image=11"
+            "image": null
         },
         "likes": 56,
         "created": "2021-04-03"
@@ -75,7 +75,7 @@ for (let i = 0; i < posts.length; i++) {
     <div class="post__header">
         <div class="post-meta">                    
             <div class="post-meta__icon">
-                <img class="profile-pic" src="${postAuthorImage}" alt="Phil Mangione">                    
+                <img class="profile-pic" src="${postAuthorImage}" alt="LF">                    
             </div>
             <div class="post-meta__data">
                 <div class="post-meta__author">${postAuthorName}</div>
