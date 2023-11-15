@@ -56,55 +56,67 @@ const posts = [
     }
 ];
 
+
+function formatDate(dateString) {
+    const [year, month, day] = dateString.split('-');
+    return `${day}/${month}/${year}`;
+}
+
+
 const container = document.getElementById("container");
 
-for (let i = 0; i < posts.length; i++) {
 
+
+for (let i = 0; i < posts.length; i++) {
+    
+    
+    
     const postId = posts[i].id;
     const postContent = posts[i].content;
     const postMedia = posts[i].media;
     const postAuthorName = posts[i].author.name;
     const postAuthorImage = posts[i].author.image;
     const postLikes = posts[i].likes;
-    const postDate = posts[i].created;
-
-
+    const postDate = formatDate(posts[i].created);;
+    
+    
     //creating the post in html (DOM )
    container.innerHTML += ` 
     <div class="post">
     <div class="post__header">
         <div class="post-meta">                    
             <div class="post-meta__icon">
-                <img class="profile-pic" src="${postAuthorImage}" alt="LF">                    
+                <img class="profile-pic" src="${postAuthorImage}" alt="Philip">                    
             </div>
             <div class="post-meta__data">
-                <div class="post-meta__author">${postAuthorName}</div>
-                <div class="post-meta__time">${postDate}</div>
+            <div class="post-meta__author">${postAuthorName}</div>
+            <div class="post-meta__time">${postDate}</div>
             </div>                    
-        </div>
-    </div>
-    <div class="post__text">${postContent}</div>
-    <div class="post__image">
-        <img src="${postMedia}" alt="">
-    </div>
+            </div>
+            </div>
+            <div class="post__text">${postContent}</div>
+            <div class="post__image">
+            <img src="${postMedia}" alt="">
+            </div>
     <div class="post__footer">
         <div class="likes js-likes">
-            <div class="likes__cta">
-            <a class="like-button  js-like-button" href="javascript:void(0)" data-postid="${postId}">
-            <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-            <span class="like-button__label">Mi Piace</span>
+        <div class="likes__cta">
+        <a class="like-button  js-like-button" href="javascript:void(0)" data-postid="${postId}">
+        <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+        <span class="like-button__label">Mi Piace</span>
             </a>
             </div>
             <div class="likes__counter">
             Piace a <b id="like-counter-${postId}" class="js-likes-counter">${postLikes}</b> persone
             </div>
             </div> 
-         </div>            
-    </div>`;
+            </div>            
+            </div>`;
+            
+        };
 
-};
 
-
+        
 // Add event listener to each like button separately
 const likeButtons = document.querySelectorAll(".js-like-button");
 
@@ -132,7 +144,7 @@ likeButtons.forEach(function (likeBtn, i) {
 
     });
     
-  
+ 
 
 
 
